@@ -1,15 +1,27 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, Input, Modal } from 'antd';
+import { Button, Card, Checkbox, DatePicker, Form, Input, Modal } from 'antd';
+import { createJob } from '../../services/api';
 const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
+    const [form] = Form.useForm()
+
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = async (values) => {
+        try {
+            const { data, status } = await createJob();
+            setIsModalOpen(false);
+            form.setFieldsValue({
+                title: "",
+                department: "",
+                open_date: "",
+                dead_line: "",
+                location: "",
+                required_experience: "",
+            });
+        } catch (error) {
+            console.log({ error })
+        }
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -19,19 +31,20 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
         <>
 
             <Modal footer={false} title="Create Job" open={isModalOpen} onCancel={handleCancel}>
-                <Card>
+                <Card className='w-full'>
                     <Form
+                        form={form}
                         name="basic"
                         className='w-full'
                         labelCol={{
                             span: 8,
                         }}
-                        wrapperCol={{
-                            span: 16,
-                        }}
-                        style={{
-                            maxWidth: 600,
-                        }}
+                        // wrapperCol={{
+                        //     span: 16,
+                        // }}
+                        // style={{
+                        //     maxWidth: 600,
+                        // }}
                         initialValues={{
                             remember: true,
                         }}
@@ -41,12 +54,78 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
                         layout="vertical"
                     >
                         <Form.Item
-                            label="Username"
-                            name="username"
+                            label="Title"
+                            name="title"
+                            className='w-full'
                             rules={[
                                 {
                                     required: true,
-                                    message: 'Please input your username!',
+                                    message: 'Please input your title!',
+                                },
+                            ]}
+                        >
+                            <Input className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Department"
+                            name="department"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your department!',
+                                },
+                            ]}
+                        >
+                            <Input className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Open date"
+                            name="open_date"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your open date!',
+                                },
+                            ]}
+                        >
+                            <DatePicker className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Dead line"
+                            name="dead_line"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your dead line!',
+                                },
+                            ]}
+                        >
+                            <DatePicker className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Location"
+                            name="location"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your location!',
+                                },
+                            ]}
+                        >
+                            <Input className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Required experience"
+                            name="required_experience"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your required_experience!',
                                 },
                             ]}
                         >
@@ -54,22 +133,20 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
                         </Form.Item>
 
                         <Form.Item
-                            label="Password"
-                            name="password"
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input your password!',
-                                },
-                            ]}
+                            name="isRemote"
+                            valuePropName="checked"
+                        // wrapperCol={{
+                        //     offset: 8,
+                        //     span: 16,
+                        // }}
                         >
-                            <Input.Password className='w-full' />
+                            <Checkbox>Remote</Checkbox>
                         </Form.Item>
                         <Form.Item
-                            wrapperCol={{
-                                offset: 8,
-                                span: 16,
-                            }}
+                        // wrapperCol={{
+                        //     offset: 8,
+                        //     span: 16,
+                        // }}
                         >
                             <Button type="primary" htmlType="submit">
                                 Submit
