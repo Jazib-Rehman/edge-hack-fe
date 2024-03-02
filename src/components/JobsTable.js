@@ -1,9 +1,28 @@
 import React from 'react';
 import { Space, Table, Tag } from 'antd';
 import moment from 'moment';
+import { Switch } from 'antd';
+import { updateJobAPI } from "../services/api"
 
-const JobsTable = () => {
-    const columns = [
+const JobsTable = ({ jobsList, isActive = true, modalOpen }) => {
+
+    const onChange = async (checked, id) => {
+        try {
+            const { data } = await updateJobAPI({ isActive: checked }, id)
+        } catch (error) {
+            console.log('error', error)
+        }
+    };
+
+    const onClick = async (id) => {
+        try {
+            modalOpen(id)
+        } catch (error) {
+            console.log('error', error)
+        }
+    };
+
+    const columns = isActive ? [
         {
             title: 'Title',
             dataIndex: 'title',
@@ -19,19 +38,19 @@ const JobsTable = () => {
             title: 'Open date',
             dataIndex: 'open_date',
             key: 'open_date',
-            render: (text) => <a>{moment(text).format("DD/MM/YYYY")}</a>,
+            render: (text) => <a>{moment(text).format("DD-MM-YYYY")}</a>,
         },
         {
             title: 'Location',
-            dataIndex: 'location ',
-            key: 'location ',
+            dataIndex: 'location',
+            key: 'location',
             render: (text) => <a>{text}</a>,
         },
         {
-            title: 'Dead line ',
+            title: 'Dead line',
             dataIndex: 'dead_line',
             key: 'dead_line',
-            render: (text) => <a>{moment(text).format("DD/MM/YYYY")}</a>,
+            render: (text) => <a>{moment(text).format("DD-MM-YYYY")}</a>,
         },
         // {
         //     title: 'Tags',
@@ -53,41 +72,54 @@ const JobsTable = () => {
         //         </>
         //     ),
         // },
+
         {
-            title: 'Action',
-            key: 'action',
+            title: 'Active',
+            key: 'isActive',
             render: (_, record) => (
                 <Space size="middle">
-                    {/* <a>Invite {record.name}</a> */}
-                    <a>View</a>
+                    {record.isActive}
+                    <Switch defaultChecked={record?.isActive} onChange={(e) => onChange(e, record.id)} />
                 </Space>
             ),
         },
+    ] : [
+        {
+            title: 'Title',
+            dataIndex: 'title',
+            key: 'title',
+            render: (_, record) => (
+                <Space size="middle">
+                    {record.isActive}
+                    <p onClick={(e) => onClick(record.id)}>{record.title} </p>
+                </Space>
+            ),
+        },
+        {
+            title: 'Department',
+            dataIndex: 'department',
+            key: 'department',
+        },
+        {
+            title: 'Open date',
+            dataIndex: 'open_date',
+            key: 'open_date',
+            render: (text) => <a>{moment(text).format("DD-MM-YYYY")}</a>,
+        },
+        {
+            title: 'Location',
+            dataIndex: 'location',
+            key: 'location',
+            render: (text) => <a>{text}</a>,
+        },
+        {
+            title: 'Dead line',
+            dataIndex: 'dead_line',
+            key: 'dead_line',
+            render: (text) => <a>{moment(text).format("DD-MM-YYYY")}</a>,
+        },
     ];
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
-    return <Table columns={columns} dataSource={data} />;
+    return <Table columns={columns} dataSource={jobsList} />;
 }
 
 export default JobsTable;

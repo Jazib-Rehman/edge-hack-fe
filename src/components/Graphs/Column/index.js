@@ -13,7 +13,7 @@ const data = [
     { type: '30+分', value: 0.015 },
 ];
 
-const ColumnChart = () => {
+const ColumnChart = ({ candidatescore }) => {
     const config = {
         data,
         xField: 'type',

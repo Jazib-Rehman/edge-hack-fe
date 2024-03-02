@@ -1,11 +1,12 @@
 import React from 'react';
 import { Pie } from '@ant-design/plots';
 
-const DonutGraph = () => {
+const DonutGraph = ({ active, inActive }) => {
+
     const config = {
         data: [
-            { type: 'Active', value: 27 },
-            { type: 'Non-Active', value: 25 },
+            { type: 'Active', value: active },
+            { type: 'Non-Active', value: inActive },
         ],
         width: 300,
         height: 300,

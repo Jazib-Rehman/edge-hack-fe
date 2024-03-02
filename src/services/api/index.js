@@ -23,38 +23,52 @@ const API_PREFIX = "http://192.168.10.150:8000/api/";
 // const APPLICATION_X_WWW_FORM_URLENCODED =
 //   REACT_APP_APPLICATION_X_WWW_FORM_URLENCODED;
 
-const headers = {
-  // "Access-Control-Allow-Origin": "*",
-  // "Accept": "application/json"
-}
 
 export const createJob = (data) => {
   return axios.post(
-    `${API_PREFIX}${Jobs}`,
+    `${API_PREFIX}${JOBS}/`,
     data,
-    //     {
-    //       [AXIOS_RETRY]: {
-    //         retries: 3,
-    //       },
-    //       errorHandling: {
-    //         global: true,
-    //       },
-    //     }
+  );
+};
+export const createCandidate = (data) => {
+  return axios.post(
+    `${API_PREFIX}candidates/`,
+    data,
   );
 };
 
 export const getAllJobs = () => {
   return axios.get(`${API_PREFIX}${JOBS}`,
-    // { withCredentials: true },
-    // {
+  );
+};
 
-    //   [AXIOS_RETRY]: {
-    //     retries: 3,
-    //   },
-    //   errorHandling: {
-    //     global: true,
-    //   },
-    // }
+export const getAllCandidates = () => {
+  return axios.get(`${API_PREFIX}candidates`,
+  );
+};
+
+export const getAllScore = () => {
+  return axios.get(`${API_PREFIX}score-graph`,
+  );
+};
+
+export const getAllStatus = () => {
+  return axios.get(`${API_PREFIX}status-graph`,
+  );
+};
+
+export const calScore = (body) => {
+  return axios.post(`${API_PREFIX}calscore`,
+    body
+  );
+};
+
+export const getAllCandidatesScore = () => {
+  return axios.get(`${API_PREFIX}candidates/`,
+  );
+};
+export const getAllUniversities = () => {
+  return axios.get(`${API_PREFIX}university`,
   );
 };
 
@@ -69,15 +83,6 @@ export const getAllJobs = () => {
 //   });
 // };
 
-// export const updateUser = (data, id) => {
-//   return axios.patch(${API_PREFIX}${USER}/${UPDATE}/${id},
-//     data,
-//     { headers }, {
-//     [AXIOS_RETRY]: {
-//       retries: 3,
-//     },
-//     errorHandling: {
-//       global: true,
-//     },
-//   });
-// };
+export const updateJobAPI = (data, id) => {
+  return axios.patch(`${API_PREFIX}jobs/${id}/`, data,);
+};

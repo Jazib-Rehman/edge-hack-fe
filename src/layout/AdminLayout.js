@@ -147,13 +147,6 @@ const AdminLayout = ({ children }) => {
 
     const { token } = useToken();
 
-    const onSwitchChange = (val) => {
-        if (val) {
-            setPrimary("#000829")
-        } else {
-            setPrimary("#FFFFFF")
-        }
-    }
 
     return (
         <ConfigProvider
@@ -181,14 +174,14 @@ const AdminLayout = ({ children }) => {
         >
             <Layout>
                 <Sider style={{ backgroundColor: primary }} width={300} trigger={null} collapsible collapsed={collapsed}>
-                    <div className="py-2 flex justify-center items-center" >
+                    <div className="flex items-center justify-center py-2" >
                         {/* <Text
                             style={{ color: relatedColors.textContrastColor, fontFamily: "monospace" }}
                             className="text-2xl"
                         >
                             Admin Panel
                         </Text> */}
-                        <div className="w-full h-18 pl-4 flex items-center">
+                        <div className="flex items-center w-full pl-4 h-18">
                             {
                                 primary === "#FFFFFF" ?
                                     <img src="../../assets/logo.png" alt="sabhi" width={200} />
@@ -203,7 +196,7 @@ const AdminLayout = ({ children }) => {
                         style={{ backgroundColor: "rgba(0,0,0,0)", }}
                         mode="inline"
                         defaultOpenKeys={['2']}
-                        selectedKeys={window.location.pathname === "/admin/dashboard" ? "1" :
+                        selectedKeys={window.location.pathname === "/admin" ? "1" :
                             window.location.pathname === "/admin/company-admins" ? "2-1" :
                                 window.location.pathname === "/admin/super-admins" ? "2-2" :
                                     "3"}
@@ -211,12 +204,12 @@ const AdminLayout = ({ children }) => {
                             {
                                 key: '1',
                                 icon: <LuLayoutDashboard style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <Link to="/admin/dashboard"><div className="flex items-center justify-between px-2"><Text >Dashboard</Text> <Badge
+                                label: <Link to="/admin"><div className="flex items-center justify-between px-2"><Text >Dashboard</Text> <Badge
                                     className="site-badge-count-109"
                                     count={0}
                                     style={{ backgroundColor: "#c3ebda", color: "white" }}
                                 /></div></Link>,
-                                style: window.location.pathname === "/admin/dashboard" ? { backgroundColor: "#c3ebda", color: "white" } : null
+                                style: window.location.pathname === "/admin" ? { backgroundColor: "#c3ebda", color: "white" } : null
                             },
                             // {
                             //     key: '2',
@@ -250,30 +243,30 @@ const AdminLayout = ({ children }) => {
                             //     ]
                             // },
                             {
-                                key: '4',
+                                key: '2',
                                 icon: <IoBriefcaseOutline style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
                                 label: <Link to="/admin/jobs"><div className="flex items-center justify-between px-2"><Text>Jobs</Text> <Badge
                                     className="site-badge-count-109"
                                     count={0}
                                     style={{ backgroundColor: "#1420ff", color: "white" }}
                                 /></div></Link>,
-                                style: window.location.pathname === "/admin/companies" ? { backgroundColor: "#c3ebda", color: "white" } : null
+                                style: window.location.pathname === "/admin/jobs" ? { backgroundColor: "#c3ebda", color: "white" } : null
                             },
                             {
-                                key: '5',
+                                key: '4',
                                 icon: <FiUsers style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
                                 label: <Link to="/admin/candidates"><div className="flex items-center justify-between px-2"><Text>Candidates</Text> <Badge
                                     className="site-badge-count-109"
                                     count={0}
                                     style={{ backgroundColor: "#1420ff", color: "white" }}
                                 /></div></Link>,
-                                style: window.location.pathname === "/admin/tags" ? { backgroundColor: "#c3ebda", color: "white" } : null
+                                style: window.location.pathname === "/admin/candidates" ? { backgroundColor: "#c3ebda", color: "white" } : null
                             }
                         ]}
                     />
                 </Sider>
                 <Layout>
-                    <Header className="w-full flex justify-between items-center h-20" style={{ padding: "0 40px 0 0", background: primary }}>
+                    <Header className="flex items-center justify-between w-full h-20" style={{ padding: "0 40px 0 0", background: primary }}>
                         {/* <Button
                             type="text"
                             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -303,7 +296,7 @@ const AdminLayout = ({ children }) => {
                             <div className="mx-3">
                                 <Button size="large" type="link" onClick={() => {
                                     localStorage.clear()
-                                    navigate("/auth")
+                                    navigate("/admin/login")
                                 }}>Logout</Button>
                             </div>
                         </div>
@@ -338,9 +331,9 @@ const AdminLayout = ({ children }) => {
             {/* <div>
                 <div
                     style={{ backgroundColor: primary }}
-                    className="w-full flex justify-between items-center fixed top-0 shadow-lg z-50"
+                    className="fixed top-0 z-50 flex items-center justify-between w-full shadow-lg"
                 >
-                    <div className="px-10 flex justify-between items-center w-full p-6">
+                    <div className="flex items-center justify-between w-full p-6 px-10">
                         <div onClick={() => navigate("/")} className="w-32 cursor-pointer">
                             <Logo
                                 primary={relatedColors.logoPrim}
@@ -389,7 +382,7 @@ const AdminLayout = ({ children }) => {
                         </div>
                     </div>
                 </div>
-                <div className="mt-24 pt-3">{children}</div>
+                <div className="pt-3 mt-24">{children}</div>
             </div> */}
         </ConfigProvider >
     );

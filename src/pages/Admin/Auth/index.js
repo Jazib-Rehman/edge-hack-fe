@@ -27,10 +27,9 @@ export default function Welcome(props) {
   const [company, setCompany] = useState("");
   const [userId, setUserId] = useState("");
 
-  const { from } = location.state || { from: { pathname: "/admin/dashboard" } };
+  const { from } = location.state || { from: { pathname: "/admin" } };
 
   const login = (data) => {
-    console.log({ data })
     // setLoading(true);
     // // navigate("/")
     // auth.signIn(
@@ -103,8 +102,8 @@ export default function Welcome(props) {
   return (
     <div>
       {loading && <StyledLoader />}
-      <Row className="h-screen items-center">
-        <Col style={{ background: "#1D6E7130" }} className="h-screen flex items-center justify-center" span={isMobile ? 24 : 12}>
+      <Row className="items-center h-screen">
+        <Col style={{ background: "#1D6E7130" }} className="flex items-center justify-center h-screen" span={isMobile ? 24 : 12}>
           <div className="w-1/2">
             <Row>
               <Col
@@ -112,7 +111,7 @@ export default function Welcome(props) {
                 onClick={() => backHandler(showPage)}
               >
                 {showPage !== "login" && (
-                  <div className="w-12 flex items-center justify-between">
+                  <div className="flex items-center justify-between w-12">
                     <img src="assets/back.svg" alt="back" />
                     <Text className="back-text">Back</Text>
                   </div>
@@ -130,7 +129,7 @@ export default function Welcome(props) {
             )}
             {showPage === "login" && (
               <Row className="w-full" justify="center">
-                <div className="w-full flex justify-center">
+                <div className="flex justify-center w-full">
                   <img className="w-56" src="../assets/logo.png" />
                 </div>
                 <LoginSignup
@@ -170,7 +169,7 @@ export default function Welcome(props) {
           </div>
         </Col>
         {!isMobile && (
-          <Col align="center" justify="center" className="h-screen flex items-center p-24" span={12}>
+          <Col align="center" justify="center" className="flex items-center h-screen p-24" span={12}>
             {/* {showPage === "forgotPassword" ? ( */}
             <img src="../assets/banner.png" className="w-full h-full object-fit" alt="sabhi" />
             {/* ) : (

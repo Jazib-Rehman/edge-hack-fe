@@ -5,56 +5,55 @@ import CustomMap from './../../components/Map/Map'
 import PieChart from "../../components/Graphs/PieChart";
 import DonutGraph from "../../components/Graphs/DonutGraph";
 import JobsTable from "../../components/JobsTable";
+import { getAllJobs, getAllScore } from "../../services/api";
 
 const { Text } = Typography;
 
 const Dashboard = () => {
 
-    const [cluster, setCluster] = React.useState('');
-    const [showData, setShowData] = React.useState(false);
-    const [showBrands, setShowBrands] = React.useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const [showCluster, setShowCluster] = React.useState('All');
-    const [selectedCountries, setSelectedCountries] = React.useState(['PK']);
-    const [countries, setCountries] = React.useState('Pakistan,Afghanistan,Sri Lanka,Maldives,Myanmar,Iran,Saudi Arabia,Kuwait,Bahrain,Yemen,UAE,Oman,Qatar,Palestine,Jordan,Lebanon,Iraq,Syria');
+    const [jobsList, setJobsList] = useState([]);
+    const [filteredJobsList, setFilteredJobsList] = useState([]);
+    const [allScore, getAllScored] = useState([]);
 
-    const [clusterCalculatedData, setClusterCalculatedData] = useState({});
-    const [clusterIds, setClusterIds] = useState([]);
-    const [vuseSelectedCountry, setVuseSelectedCountry] = React.useState('');
-
-    const [showCharts, setShowCharts] = useState(false);
+    const getJobsList = async () => {
+        try {
+            const { data, status } = await getAllJobs()
+            const { data: score } = await getAllScore()
+            setJobsList(data?.results)
+            getAllScored(score)
+            setFilteredJobsList(data?.results.filter(item => item.isActive === true))
+        } catch (error) {
+            console.log({ error })
+        }
+    }
 
     useEffect(() => {
-        setTimeout(() => {
-            setShowCharts(true)
-        }, 1000);
+        getJobsList()
     }, [])
-    const handleReset = () => {
-        setSelectedCountries(['PK'])
-        setVuseSelectedCountry('')
-    }
+
 
     return <Card>
 
         <div className="flex flex-wrap w-full">
-            <div className="w-full flex flex-wrap">
+            <div className="flex flex-wrap w-full">
                 <div className="w-1/2 p-3">
                     {/* <DashboardCard /> */}
-                    <DonutGraph />
+                    <DonutGraph active={jobsList.filter(item => item.isActive === true).length} inActive={jobsList.filter(item => item.isActive === false).length} />
+                    {/* <PieChart jobsList={jobsList} /> */}
                 </div>
                 <div className="w-1/2 p-3">
                     {/* <DashboardCard /> */}
-                    <PieChart />
+                    <PieChart allScore={allScore} />
                 </div>
                 <div className="w-full p-3">
                     {/* <DashboardCard /> */}
-                    <Row justify={"start"}>
+                    <Row className="flex items-center justify-between space-x-2">
                         <Typography.Text className="text-2xl font-semibold">
                             Active Jobs
                         </Typography.Text>
                     </Row>
                     <div className="mt-5">
-                        <JobsTable />
+                        <JobsTable jobsList={filteredJobsList} isActive={false} />
                     </div>
                 </div>
 

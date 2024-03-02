@@ -11,7 +11,7 @@ const Jobs = () => {
     const getJobsList = async () => {
         try {
             const { data, status } = await getAllJobs()
-            console.log({ data })
+            setJobsList(data?.results)
         } catch (error) {
             console.log({ error })
         }
@@ -23,14 +23,14 @@ const Jobs = () => {
 
     return <div className="w-full">
         <Card className="w-full" >
-            <Row justify={"space-between"} className="py-2 w-full">
+            <Row justify={"space-between"} className="w-full py-2">
                 <Typography.Text className="text-2xl font-semibold">
                     Jobs
                 </Typography.Text>
                 <Button onClick={() => setIsModalOpen(true)}>Create New +</Button>
             </Row>
             <Divider style={{ margin: 0 }} />
-            <JobsTable />
+            <JobsTable jobsList={jobsList} />
             <JobsModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
         </Card>
     </div>

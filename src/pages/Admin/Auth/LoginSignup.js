@@ -9,20 +9,11 @@ import {
   Select,
   Checkbox,
   Button,
+  message,
 } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const { Item } = Form;
-const { Option } = Select;
-const { Text } = Typography;
-
-const prefixSelector = (
-  <Item name="prefix" noStyle>
-    <Select defaultValue="+92" style={{ width: 70 }}>
-      <Option value="92">+92</Option>
-    </Select>
-  </Item>
-);
-
 function LoginSignup({
   login,
   signup,
@@ -32,6 +23,7 @@ function LoginSignup({
   company,
   email,
 }) {
+  const navigate = useNavigate()
   const [phoneNumber, setPhoneNumber] = useState("afasfa");
 
   // const PHONE_REGEX = /^(?:\d{8}(?:\d{2}(?:\d{2})?)?|\(\+?\d{2,3}\)\s?(?:\d{4}[\s*.-]?\d{4}|\d{3}[\s*.-]?\d{3}|\d{2}([\s*.-]?)\d{2}\1\d{2}(?:\1\d{2})?))$/;
@@ -45,6 +37,15 @@ function LoginSignup({
     });
   }, []);
 
+  const loginFunction = ({ email, password }) => {
+    if (email === "admin@gmail.com" && password === "admin1234") {
+      navigate("/admin")
+    } else {
+      message.error("Wrong username or password!")
+    }
+
+  }
+
   return (
     <div className="w-full">
       <Col>
@@ -57,9 +58,7 @@ function LoginSignup({
         {type === "login" && (
           <Form
             className="container"
-            onFinish={async (values) => {
-              await login(values);
-            }}
+            onFinish={async (values) => loginFunction(values)}
           >
             <Item
               name="email"
@@ -99,90 +98,6 @@ function LoginSignup({
             </div> */}
             <Button size="large" type="primary" htmlType="submit" className="mt-4 full-width bg-[#4ac18e]">
               Login
-            </Button>
-          </Form>
-        )}
-
-        {type === "signup" && (
-          <Form
-            className="container"
-            onFinish={async (values) => {
-              await signup(values);
-            }}
-          >
-            <Item name="fullName" rules={[{ required: true, message: " " }]}>
-              <Input size="large" placeholder="Full name" />
-            </Item>
-            <Item name="companyName" rules={[{ required: true, message: " " }]}>
-              <Input size="large" disabled={company && true} placeholder="Company name" />
-            </Item>
-            <Item
-              name="phoneNumber"
-              hasFeedback
-              rules={[
-                {
-                  pattern: "^[0-9]{10}$",
-                  message: "Invalid phone number!",
-                },
-              ]}
-            >
-              <Input
-                controls={false}
-                value={phoneNumber}
-                addonBefore={prefixSelector}
-                style={{ width: "100%" }}
-                placeholder="Phone number"
-              />
-            </Item>
-            <Item
-              name="email"
-              rules={[
-                {
-                  type: "email",
-                  message: "email not valid!",
-                },
-                {
-                  required: true,
-                  message: " ",
-                },
-              ]}
-            >
-              <Input size="large" disabled={email && true} placeholder="Email" />
-            </Item>
-            <Item
-              name="password"
-              // rules={[{ required: true, message: 'Min 8 Character, with upper and lower case alphabits, nubmer and special character', pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" }, { min: 7 }]}
-              rules={[{ required: true, message: "" }, { min: 7 }]}
-            >
-              <Input.Password placeholder="Create password" />
-            </Item>
-            <div
-              style={{
-                marginBottom: 32,
-                display: "flex",
-                alignItems: "start",
-                justifyContent: "space-between",
-              }}
-            >
-              <Item name="tnc" valuePropName="checked">
-                <Checkbox>I agree to the</Checkbox>
-              </Item>
-              <a
-                style={{ marginTop: "4px" }}
-                onClick={() => console.log("t&c")}
-              >
-                <Text
-                  underline
-                  style={{
-                    color: "#1890FF",
-                  }}
-                >
-                  Terms and Conditions
-                </Text>
-              </a>
-            </div>
-            <Button size="large" type="primary" htmlType="submit" className="full-width">
-              Sign up
             </Button>
           </Form>
         )}

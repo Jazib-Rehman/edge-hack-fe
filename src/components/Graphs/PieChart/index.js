@@ -1,16 +1,17 @@
 import React from 'react';
 import { Pie } from '@ant-design/plots';
 
-const PieChart = () => {
+const PieChart = ({ allScore }) => {
+
+
+    console.log('allScore', allScore)
+    const array = Object.entries(allScore).map(([key, value]) => ({
+        type: parseInt(key), // Ensuring the type is a number
+        value: value,
+    }));
+
     const config = {
-        data: [
-            { type: '分类一', value: 27 },
-            { type: '分类二', value: 25 },
-            { type: '分类三', value: 18 },
-            { type: '分类四', value: 15 },
-            { type: '分类五', value: 10 },
-            { type: '其他', value: 5 },
-        ],
+        data: array,
         width: 300,
         height: 300,
         angleField: 'value',

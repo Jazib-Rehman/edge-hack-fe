@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Card, Checkbox, DatePicker, Form, Input, Modal } from 'antd';
 import { createJob } from '../../services/api';
+import moment from "moment"
+
+
 const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
     const [form] = Form.useForm()
 
@@ -9,7 +12,10 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
     };
     const onFinish = async (values) => {
         try {
-            const { data, status } = await createJob();
+            values.dead_line = moment(values.dead_line).format("YYYY-MM-DD")
+            values.open_date = moment(values.open_date).format("YYYY-MM-DD")
+            const { data, status } = await createJob(values);
+
             setIsModalOpen(false);
             form.setFieldsValue({
                 title: "",
@@ -61,6 +67,19 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
                                 {
                                     required: true,
                                     message: 'Please input your title!',
+                                },
+                            ]}
+                        >
+                            <Input className='w-full' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Description"
+                            name="description"
+                            className='w-full'
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your description!',
                                 },
                             ]}
                         >
