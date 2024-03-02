@@ -25,6 +25,9 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { LiaClipboardListSolid } from "react-icons/lia";
 import { TbTags } from "react-icons/tb";
 import { MdOutlineAssessment } from "react-icons/md";
+import { IoBriefcaseOutline } from "react-icons/io5";
+import { FiUsers } from "react-icons/fi";
+
 
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
@@ -215,41 +218,41 @@ const AdminLayout = ({ children }) => {
                                 /></div></Link>,
                                 style: window.location.pathname === "/admin/dashboard" ? { backgroundColor: "#c3ebda", color: "white" } : null
                             },
-                            {
-                                key: '2',
-                                icon: <PiUsers style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <div className="flex items-center justify-between px-2"><Text>Users</Text> <Badge
-                                    className="site-badge-count-109"
-                                    count={0}
-                                    style={{ backgroundColor: "#1420ff", color: "white" }}
-                                /></div>,
-                                children: [
-                                    {
-                                        key: '2-1',
-                                        icon: <GrUserAdmin style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                        label: <Link to="/admin/company-admins"><div className="flex items-center justify-between px-2"><Text>Company Admins</Text> <Badge
-                                            className="site-badge-count-109"
-                                            count={0}
-                                            style={{ backgroundColor: "#1420ff", color: "white" }}
-                                        /></div></Link>,
-                                        style: window.location.pathname === "/admin/company-admins" ? { backgroundColor: "#c3ebda", color: "white" } : null
-                                    },
-                                    {
-                                        key: '2-2',
-                                        icon: <RiAdminLine style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                        label: <Link to="/admin/super-admins"><div className="flex items-center justify-between px-2"><Text>Super Admins</Text> <Badge
-                                            className="site-badge-count-109"
-                                            count={0}
-                                            style={{ backgroundColor: "#1420ff", color: "white" }}
-                                        /></div></Link>,
-                                        style: window.location.pathname === "/admin/super-admins" ? { backgroundColor: "#c3ebda", color: "white" } : null
-                                    },
-                                ]
-                            },
+                            // {
+                            //     key: '2',
+                            //     icon: <PiUsers style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
+                            //     label: <div className="flex items-center justify-between px-2"><Text>Users</Text> <Badge
+                            //         className="site-badge-count-109"
+                            //         count={0}
+                            //         style={{ backgroundColor: "#1420ff", color: "white" }}
+                            //     /></div>,
+                            //     children: [
+                            //         {
+                            //             key: '2-1',
+                            //             icon: <GrUserAdmin style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
+                            //             label: <Link to="/admin/company-admins"><div className="flex items-center justify-between px-2"><Text>Company Admins</Text> <Badge
+                            //                 className="site-badge-count-109"
+                            //                 count={0}
+                            //                 style={{ backgroundColor: "#1420ff", color: "white" }}
+                            //             /></div></Link>,
+                            //             style: window.location.pathname === "/admin/company-admins" ? { backgroundColor: "#c3ebda", color: "white" } : null
+                            //         },
+                            //         {
+                            //             key: '2-2',
+                            //             icon: <RiAdminLine style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
+                            //             label: <Link to="/admin/super-admins"><div className="flex items-center justify-between px-2"><Text>Super Admins</Text> <Badge
+                            //                 className="site-badge-count-109"
+                            //                 count={0}
+                            //                 style={{ backgroundColor: "#1420ff", color: "white" }}
+                            //             /></div></Link>,
+                            //             style: window.location.pathname === "/admin/super-admins" ? { backgroundColor: "#c3ebda", color: "white" } : null
+                            //         },
+                            //     ]
+                            // },
                             {
                                 key: '4',
-                                icon: <SiAwsorganizations style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <Link to="/admin/companies"><div className="flex items-center justify-between px-2"><Text>Companies</Text> <Badge
+                                icon: <IoBriefcaseOutline style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
+                                label: <Link to="/admin/jobs"><div className="flex items-center justify-between px-2"><Text>Jobs</Text> <Badge
                                     className="site-badge-count-109"
                                     count={0}
                                     style={{ backgroundColor: "#1420ff", color: "white" }}
@@ -258,34 +261,14 @@ const AdminLayout = ({ children }) => {
                             },
                             {
                                 key: '5',
-                                icon: <TbTags style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <Link to="/admin/tags"><div className="flex items-center justify-between px-2"><Text>Tags</Text> <Badge
+                                icon: <FiUsers style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
+                                label: <Link to="/admin/candidates"><div className="flex items-center justify-between px-2"><Text>Candidates</Text> <Badge
                                     className="site-badge-count-109"
                                     count={0}
                                     style={{ backgroundColor: "#1420ff", color: "white" }}
                                 /></div></Link>,
                                 style: window.location.pathname === "/admin/tags" ? { backgroundColor: "#c3ebda", color: "white" } : null
-                            },
-                            {
-                                key: '6',
-                                icon: <LuScrollText style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <Link to="/admin/challenges"><div className="flex items-center justify-between px-2"><Text>Challenges</Text> <Badge
-                                    className="site-badge-count-109"
-                                    count={0}
-                                    style={{ backgroundColor: "#1420ff", color: "white" }}
-                                /></div></Link>,
-                                style: window.location.pathname === "/admin/challenges" ? { backgroundColor: "#c3ebda", color: "white" } : null
-                            },
-                            {
-                                key: '7',
-                                icon: <MdOutlineAssessment style={{ color: primary === "#FFFFFF" ? "black" : "white" }} />,
-                                label: <Link to="/admin/assessments"><div className="flex items-center justify-between px-2"><Text>Assessments</Text> <Badge
-                                    className="site-badge-count-109"
-                                    count={0}
-                                    style={{ backgroundColor: "#1420ff", color: "white" }}
-                                /></div></Link>,
-                                style: window.location.pathname === "/admin/assessments" ? { backgroundColor: "#c3ebda", color: "white" } : null
-                            },
+                            }
                         ]}
                     />
                 </Sider>

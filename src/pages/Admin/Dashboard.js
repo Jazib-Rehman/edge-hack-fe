@@ -1,10 +1,10 @@
-import { Typography } from "antd";
+import { Row, Typography } from "antd";
 import DashboardCard from "../../components/DashboardCard";
 import React, { useEffect, useState } from "react";
 import CustomMap from './../../components/Map/Map'
-import LineChart from "../../components/Graphs/PieChart";
-// import LineGraph from "../../components/Graphs/Line";
-// import { Pie } from '@ant-design/plots';
+import PieChart from "../../components/Graphs/PieChart";
+import DonutGraph from "../../components/Graphs/DonutGraph";
+import JobsTable from "../../components/JobsTable";
 
 const { Text } = Typography;
 
@@ -33,66 +33,27 @@ const Dashboard = () => {
         setSelectedCountries(['PK'])
         setVuseSelectedCountry('')
     }
-    const data = [
-        {
-            type: 'Active',
-            value: 27,
-        },
-        {
-            type: 'Non-Active',
-            value: 15,
-        },
-    ];
-    const config = {
-        appendPadding: 10,
-        data,
-        angleField: 'value',
-        colorField: 'type',
-        radius: 1,
-        innerRadius: 0.6,
-        label: {
-            type: 'inner',
-            offset: '-50%',
-            content: '{value}',
-            style: {
-                textAlign: 'center',
-                fontSize: 14,
-            },
-        },
-        interactions: [
-            {
-                type: 'element-selected',
-            },
-            {
-                type: 'element-active',
-            },
-        ],
-        statistic: {
-            title: false,
-            content: {
-                style: {
-                    whiteSpace: 'pre-wrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                },
-                content: 'AntV\nG2Plot',
-            },
-        },
-    };
 
     return <div className="flex flex-wrap w-full">
         <div className="w-full flex flex-wrap">
             <div className="w-1/2 p-3">
                 {/* <DashboardCard /> */}
-                {/* {
-                    showCharts &&
-                    <Pie {...config} />
-                } */}
+                <DonutGraph />
             </div>
             <div className="w-1/2 p-3">
                 {/* <DashboardCard /> */}
-                {showCharts &&
-                    <LineChart />}
+                <PieChart />
+            </div>
+            <div className="w-full p-3">
+                {/* <DashboardCard /> */}
+                <Row justify={"start"}>
+                    <Typography.Text className="text-2xl font-semibold">
+                        Active Jobs
+                    </Typography.Text>
+                </Row>
+                <div className="mt-5">
+                    <JobsTable />
+                </div>
             </div>
 
             {/* <div className="w-1/2 p-3">

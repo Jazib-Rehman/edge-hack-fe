@@ -1,25 +1,34 @@
 import React from 'react';
-import { Line } from '@ant-design/plots';
+import { Pie } from '@ant-design/plots';
 
-const LineChart = () => {
-    const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-    ];
-
+const PieChart = () => {
     const config = {
-        data,
-        xField: 'year',
-        yField: 'value',
+        data: [
+            { type: '分类一', value: 27 },
+            { type: '分类二', value: 25 },
+            { type: '分类三', value: 18 },
+            { type: '分类四', value: 15 },
+            { type: '分类五', value: 10 },
+            { type: '其他', value: 5 },
+        ],
+        width: 300,
+        height: 300,
+        angleField: 'value',
+        colorField: 'type',
+        label: {
+            text: 'value',
+            style: {
+                fontWeight: 'bold',
+            },
+        },
+        legend: {
+            color: {
+                title: false,
+                position: 'top',
+                rowPadding: 5,
+            },
+        },
     };
-
-    return <Line {...config} />;
+    return <Pie {...config} />;
 };
-export default LineChart;
+export default PieChart;
