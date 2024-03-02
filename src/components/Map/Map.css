@@ -1,0 +1,120 @@
+.zIndex {
+    z-index: 10000;
+    -webkit-box-shadow: 1px 1px 10px 1px #535B5E;
+    box-shadow: 1px 1px 10px 1px #535B5E;
+}
+
+.reloadIcon {
+    position: absolute;
+    color: white;
+    padding: 6px;
+    width: 100px;
+    height: 100px;
+}
+
+.flag{
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.flag-wraper {
+    position: absolute;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+}
+
+.flag-pk {
+    top: 30%;
+    left: 63%;
+}
+
+.flag-pk-vuse {
+    top: 30%;
+    left: 55%;
+}
+
+.flag-af {
+    top: 18%;
+    left: 58%;
+}
+
+.flag-ir {
+    top: 20%;
+    left: 45%;
+}
+
+.flag-iq {
+    top: 18%;
+    left: 32%;
+}
+
+.flag-jo {
+    top: 28%;
+    left: 18%;
+}
+
+.flag-ps {
+    top: 22%;
+    left: 17%;
+}
+
+.flag-lb {
+    top: 16%;
+    left: 18%;
+}
+
+.flag-kw {
+    top: 18%;
+    left: 48%;
+}
+
+.flag-bh {
+    top: 35%;
+    left: 61%;
+}
+
+.flag-sa {
+    top: 45%;
+    left: 32%;
+}
+
+.flag-ye {
+    top: 65%;
+    left: 36%;
+}
+
+.flag-om {
+    top: 55%;
+    left: 48%;
+}
+
+.flag-ae {
+    top: 40%;
+    left: 45%;
+}
+
+.flag-ae-vuse {
+    top: 50%;
+    left: 65%;
+}
+
+.flag-qa {
+    top: 36%;
+    left: 40%;
+}
+
+.flag-lk {
+    top: 85%;
+    left: 80%;
+}
+
+.flag-mv {
+    top: 88%;
+    left: 68%;
+}
+
+.flag-mm {
+    top: 55%;
+    left: 95%;
+}

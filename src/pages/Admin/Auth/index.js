@@ -10,7 +10,7 @@ import { Row, Col, Typography, message } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 
 // import { AuthContext } from "../../context/Auth";
-import { StyledLoader } from "../../components/loader";
+import { StyledLoader } from "../../../components/loader";
 import { isMobile } from "react-device-detect";
 import VerificationSent from "./verificationSent";
 
@@ -131,7 +131,7 @@ export default function Welcome(props) {
             {showPage === "login" && (
               <Row className="w-full" justify="center">
                 <div className="w-full flex justify-center">
-                  {/* <img className="w-56" src="../assets/logo.png" /> */}
+                  <img className="w-56" src="../assets/logo.png" />
                 </div>
                 <LoginSignup
                   type={type}
@@ -172,7 +172,7 @@ export default function Welcome(props) {
         {!isMobile && (
           <Col align="center" justify="center" className="h-screen flex items-center p-24" span={12}>
             {/* {showPage === "forgotPassword" ? ( */}
-            <img src="assets/banner.png" className="w-full h-full object-fit" alt="sabhi" />
+            <img src="../assets/banner.png" className="w-full h-full object-fit" alt="sabhi" />
             {/* ) : (
               <img src="assets/rafiki.svg" alt="sabhi" />
             )} */}

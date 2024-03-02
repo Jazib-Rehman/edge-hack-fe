@@ -48,10 +48,10 @@ function LoginSignup({
   return (
     <div className="w-full">
       <Col>
-        <Tabs activeKey={type} size="large" onChange={setType} centered>
+        {/* <Tabs activeKey={type} size="large" onChange={setType} centered>
           <Tabs.TabPane className="text-black" key="login" tab="Login" />
           <Tabs.TabPane key="signup" tab="Sign up" />
-        </Tabs>
+        </Tabs> */}
         <br />
 
         {type === "login" && (
