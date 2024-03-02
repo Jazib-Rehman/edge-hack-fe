@@ -1,4 +1,4 @@
-import { Row, Typography } from "antd";
+import { Card, Row, Typography } from "antd";
 import DashboardCard from "../../components/DashboardCard";
 import React, { useEffect, useState } from "react";
 import CustomMap from './../../components/Map/Map'
@@ -34,29 +34,31 @@ const Dashboard = () => {
         setVuseSelectedCountry('')
     }
 
-    return <div className="flex flex-wrap w-full">
-        <div className="w-full flex flex-wrap">
-            <div className="w-1/2 p-3">
-                {/* <DashboardCard /> */}
-                <DonutGraph />
-            </div>
-            <div className="w-1/2 p-3">
-                {/* <DashboardCard /> */}
-                <PieChart />
-            </div>
-            <div className="w-full p-3">
-                {/* <DashboardCard /> */}
-                <Row justify={"start"}>
-                    <Typography.Text className="text-2xl font-semibold">
-                        Active Jobs
-                    </Typography.Text>
-                </Row>
-                <div className="mt-5">
-                    <JobsTable />
-                </div>
-            </div>
+    return <Card>
 
-            {/* <div className="w-1/2 p-3">
+        <div className="flex flex-wrap w-full">
+            <div className="w-full flex flex-wrap">
+                <div className="w-1/2 p-3">
+                    {/* <DashboardCard /> */}
+                    <DonutGraph />
+                </div>
+                <div className="w-1/2 p-3">
+                    {/* <DashboardCard /> */}
+                    <PieChart />
+                </div>
+                <div className="w-full p-3">
+                    {/* <DashboardCard /> */}
+                    <Row justify={"start"}>
+                        <Typography.Text className="text-2xl font-semibold">
+                            Active Jobs
+                        </Typography.Text>
+                    </Row>
+                    <div className="mt-5">
+                        <JobsTable />
+                    </div>
+                </div>
+
+                {/* <div className="w-1/2 p-3">
                 <DashboardCard />
             </div>
             <div className="w-1/2 p-3">
@@ -91,11 +93,13 @@ const Dashboard = () => {
                     setClusterCalculatedData={setClusterCalculatedData}
                 />
             </div> */}
+            </div>
+            <div className="w-1/3 p-3">
+                {/* <PieChart /> */}
+            </div>
         </div>
-        <div className="w-1/3 p-3">
-            {/* <PieChart /> */}
-        </div>
-    </div>;
+    </Card>
+
 }
 
 export default Dashboard;

@@ -8,13 +8,14 @@ import Dashboard from './pages/Admin/Dashboard';
 import AdminLayout from './layout/AdminLayout';
 import Jobs from './pages/Admin/Jobs';
 import Candidates from './pages/Admin/Candidates';
+import HomeLayout from './layout/HomeLayout';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<HomeLayout><Home /></HomeLayout>} />
           <Route path="/admin/login" element={<Welcome />} />
           <Route path="/admin/dashboard" element={<AdminLayout><Dashboard /></AdminLayout>} />
           <Route path="/admin/jobs" element={<AdminLayout><Jobs /></AdminLayout>} />
