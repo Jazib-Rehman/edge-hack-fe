@@ -15,7 +15,9 @@ const DonutGraph = ({ active, inActive }) => {
         // paddingRight: 100,
         innerRadius: 0.6,
         label: {
-            text: 'value',
+            formatter: (value, item) => {
+                return item.type === 'Active' ? `${active}` : `${inActive}`;
+            },
             style: {
                 fontWeight: 'bold',
             },
@@ -27,6 +29,11 @@ const DonutGraph = ({ active, inActive }) => {
                 rowPadding: 5,
             },
         },
+        tooltip: {
+            formatter: (datum) => {
+                return { name: datum.type, value: datum.value };
+            },
+        },
         annotations: [
             {
                 type: 'text',
@@ -35,7 +42,7 @@ const DonutGraph = ({ active, inActive }) => {
                     x: '50%',
                     y: '50%',
                     textAlign: 'center',
-                    fontSize: 20,
+                    fontSize: 16,
                     fontStyle: 'bold',
                 },
             },

@@ -4,7 +4,7 @@ import { createJob } from '../../services/api';
 import moment from "moment"
 
 
-const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
+const JobsModal = ({ isModalOpen, setIsModalOpen, action }) => {
     const [form] = Form.useForm()
 
     const handleCancel = () => {
@@ -14,7 +14,7 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
         try {
             values.dead_line = moment(values.dead_line).format("YYYY-MM-DD")
             values.open_date = moment(values.open_date).format("YYYY-MM-DD")
-            const { data, status } = await createJob(values);
+            await createJob(values);
 
             setIsModalOpen(false);
             form.setFieldsValue({
@@ -25,6 +25,7 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
                 location: "",
                 required_experience: "",
             });
+            action()
         } catch (error) {
             console.log({ error })
         }
@@ -138,7 +139,7 @@ const JobsModal = ({ isModalOpen, setIsModalOpen }) => {
                             <Input className='w-full' />
                         </Form.Item>
                         <Form.Item
-                            label="Required experience"
+                            label="Experience"
                             name="required_experience"
                             className='w-full'
                             rules={[

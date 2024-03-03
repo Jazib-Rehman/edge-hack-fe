@@ -31,7 +31,7 @@ const Jobs = () => {
             </Row>
             <Divider style={{ margin: 0 }} />
             <JobsTable jobsList={jobsList} />
-            <JobsModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+            <JobsModal isModalOpen={isModalOpen} action={getJobsList} setIsModalOpen={setIsModalOpen} />
         </Card>
     </div>
 }

@@ -91,7 +91,7 @@ const JobsTable = ({ jobsList, isActive = true, modalOpen }) => {
             render: (_, record) => (
                 <Space size="middle">
                     {record.isActive}
-                    <p onClick={(e) => onClick(record.id)}>{record.title} </p>
+                    <p className='cursor-pointer' onClick={(e) => onClick(record.id)}>{record.title} </p>
                 </Space>
             ),
         },

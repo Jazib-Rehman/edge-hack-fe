@@ -25,7 +25,7 @@ const CandidatesTable = ({ candidates }) => {
             key: 'experience',
         },
         {
-            title: 'Relevancy Score',
+            title: 'Talent Score',
             dataIndex: 'score',
             key: 'score',
             render: (text) => <p>{Math.ceil(text)}</p>,
